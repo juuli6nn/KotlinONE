@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Formative 1</string>
+    <string name="etFirstName">First Name</string>
+    <string name="etLastName">Last Name</string>
+    <string name="etEmail">Email</string>
+    <string name="etPassword">Password</string>
+    <string name="etConfirmPassword">Confirm Password</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="btnCancel">Cancel</string>
+
+    <string name="hintFirstName">Enter first name</string>
+    <string name="hintLastName">Enter last name</string>
+    <string name="hintEmail">Enter email</string>
+    <string name="hintPassword">Enter password</string>
+    <string name="hintConfirmPassword">Confirm password</string>
+
+    <string name="etEmailLogin">Email</string>
+    <string name="etPasswordLogin">Password</string>
+
+    <string name="hintEmailLogin">Enter Email</string>
+    <string name="hintPasswordLogin">Password</string>
+
+    <string name="btnSignUpLogin">Sign Up</string>
+    <string name="btnLogin">Login</string>
+
+</resources>
