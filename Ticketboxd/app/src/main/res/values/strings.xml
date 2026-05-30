@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ticketboxd</string>
+    <string name="app_title">Ticketboxd</string>
+    <string name="movie_title_label">Movie Title:</string>
+    <string name="movie_title_hint">Enter movie title</string>
+    <string name="customer_name_label">Customer Name:</string>
+    <string name="customer_name_hint">Enter customer name</string>
+    <string name="ticket_count_label">Number of Tickets:</string>
+    <string name="ticket_count_hint">Enter quantity</string>
+    <string name="reserve_button">RESERVE</string>
+    <string name="reservation_summary">Reservation Summary</string>
+</resources>
