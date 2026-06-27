@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Campus Connect"
 
+        createNotificationChannel()
+
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.bn_home -> HomeFragment()
