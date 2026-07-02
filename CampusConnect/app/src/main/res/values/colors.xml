@@ -2,4 +2,24 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="brand_primary">#F62440</color>
+    <color name="brand_on_primary">#FFFFFF</color>
+    <color name="app_background_light">#FFFAF3</color>
+    <color name="app_surface_light">#FFFAF3</color>
+    <color name="app_on_background_light">#1B1B1F</color>
+    <color name="app_background_dark">#1B1B1F</color>
+    <color name="app_surface_dark">#2A2A2F</color>
+    <color name="app_on_background_dark">#FFFAF3</color>
+    <color name="avatar_tristan_bg">#DCEEFF</color>
+    <color name="avatar_arianne_bg">#FFE0E8</color>
+    <color name="avatar_eugene_bg">#E3F3D7</color>
+    <color name="avatar_zyon_bg">#E8E0FF</color>
+    <color name="avatar_face">#F3C7A6</color>
+    <color name="avatar_hair_dark">#2D2326</color>
+    <color name="avatar_hair_brown">#5B362C</color>
+    <color name="avatar_shirt_red">#F62440</color>
+    <color name="avatar_shirt_blue">#2563A8</color>
+    <color name="avatar_shirt_green">#3C7D45</color>
+    <color name="avatar_shirt_violet">#6250A8</color>
+    <color name="avatar_photo_ring">#FFFFFFFF</color>
 </resources>

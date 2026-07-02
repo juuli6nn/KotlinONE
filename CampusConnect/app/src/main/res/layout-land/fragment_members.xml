@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Group Members"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/MemberCard"
+                android:layout_width="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/MemberProfilePhoto"
+                    android:contentDescription="@string/member_photo_tristan"
+                    android:src="@drawable/member_avatar_tristan" />
+
+                <TextView
+                    style="@style/MemberInfoCard"
+                    android:text="Name: Tristan Sam Carabbacan&#10;Student Number: 202410025&#10;Course: Bachelor of Science in Information Technology&#10;Age: 19" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MemberCard"
+                android:layout_width="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/MemberProfilePhoto"
+                    android:contentDescription="@string/member_photo_arianne"
+                    android:src="@drawable/member_avatar_arianne" />
+
+                <TextView
+                    style="@style/MemberInfoCard"
+                    android:text="Name: Arianne Julian Cruz&#10;Student Number: 202411609&#10;Course: Bachelor of Science in Information Technology&#10;Age: 19" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/MemberCard"
+                android:layout_width="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/MemberProfilePhoto"
+                    android:contentDescription="@string/member_photo_eugene"
+                    android:src="@drawable/member_avatar_eugene" />
+
+                <TextView
+                    style="@style/MemberInfoCard"
+                    android:text="Name: Eugene Lloyd Matilac&#10;Student Number: 202410025&#10;Course: Bachelor of Science in Information Technology&#10;Age: 19" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MemberCard"
+                android:layout_width="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/MemberProfilePhoto"
+                    android:contentDescription="@string/member_photo_zyon"
+                    android:src="@drawable/member_avatar_zyon" />
+
+                <TextView
+                    style="@style/MemberInfoCard"
+                    android:text="Name: Zyon Ronquillo&#10;Student Number: 202410025&#10;Course: Bachelor of Science in Information Technology&#10;Age: 19" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

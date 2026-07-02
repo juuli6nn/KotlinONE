@@ -1,50 +1,48 @@
 package com.example.campusconnect
 
 import android.Manifest
-import android.app.Activity
 import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.campusconnect.databinding.ActivityMainBinding
-import android.os.Build
-import android.app.NotificationManager
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager
-import android.view.MenuItem
-import androidx.core.app.NotificationCompat
-import androidx.activity.result.contract.ActivityResultContracts
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    // Create binding object
     private lateinit var binding: ActivityMainBinding
 
-    // Create notification variables
-    private val channelId = "Demo_Channel"
-    private var nofiticationId = 1
-    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()
-    ) {
-        granted -> if (granted) sendNotification()
-        else Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG
-        )
-    }
+    private val channelId = "registration_channel"
+    private var notificationId = 1
+    private var pendingNotificationTitle = "Campus Connect"
+    private var pendingNotificationText = "Registration successful."
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                sendNotification(pendingNotificationTitle, pendingNotificationText)
+            } else {
+                Toast.makeText(this, pendingNotificationText, Toast.LENGTH_LONG).show()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Initialize the binding object
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        // set the binding object as the layout
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        // Set the toolbar as the action bar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Campus Connect"
 
@@ -53,11 +51,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.bn_home -> HomeFragment()
-                R.id.bn_dashboard -> DashboardFragment()
-                R.id.bn_notifications -> NotificationsFragment()
+                R.id.bn_members -> DashboardFragment()
+                R.id.bn_registration -> NotificationFragment()
                 else -> HomeFragment()
             }
-            // cREATE THE fragment support
+
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
                 .commit()
 
@@ -70,79 +68,78 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Set the default fragment when app loads
-        if (savedInstanceState == null) binding.bottomNavigation.selectedItemId = R.id.bn_home
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.selectedItemId = R.id.bn_home
+        }
     }
 
-    // Inflate the toolbar with the main menu
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Use the menu inflater to inflate the menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
-            R.id.mn_settings -> {
-                Toast.makeText(
-                    this,
-                    "Settings menu is selected",
-                    Toast.LENGTH_SHORT
-                ).show()
+            R.id.mn_light_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 true
             }
-            R.id.mn_about -> {
-                Toast.makeText(
-                    this,
-                    "About menu is selected",
-                    Toast.LENGTH_SHORT
-                ).show()
+            R.id.mn_dark_mode -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 true
             }
-            R.id.mn_notify -> {
-                checkPermissionAndNotify()
+            R.id.mn_exit -> {
+                finishAffinity()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
 
-    // create notification helper functions
     private fun createNotificationChannel() {
-        // Check the android version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Demo Channel",
+                "Registration",
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
-                description = "This is a demo notification bobo Turkey Arda Dumb Guler"
+                description = "Registration result notifications"
             }
+
             getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
     }
 
-    // helper function to check if permission is granted
-    private fun checkPermissionAndNotify() {
+    fun showRegistrationSuccessNotification() {
+        val title = getString(R.string.app_name)
+        val text = getString(R.string.registration_success)
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+        checkPermissionAndNotify(title, text)
+    }
+
+    private fun checkPermissionAndNotify(title: String, text: String) {
+        pendingNotificationTitle = title
+        pendingNotificationText = text
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && ActivityCompat.checkSelfPermission(
                 this,
-                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
-            ){
-            requestPermissionLauncher.launch(
-                Manifest.permission.POST_NOTIFICATIONS)
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         } else {
-            sendNotification()
+            sendNotification(title, text)
         }
     }
-    // Send the notification
-    private fun sendNotification() {
-        // Create a notification object
+
+    private fun sendNotification(title: String, text: String) {
         val notification = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_notifications)
-            .setContentTitle("ARDA FOOLER SOLD PARLAY")
-            .setContentText("This is a notification")
+            .setSmallIcon(R.drawable.ic_register)
+            .setContentTitle(title)
+            .setContentText(text)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
             .build()
-        getSystemService(NotificationManager::class.java).notify(nofiticationId++, notification)
+
+        getSystemService(NotificationManager::class.java).notify(notificationId++, notification)
     }
 }

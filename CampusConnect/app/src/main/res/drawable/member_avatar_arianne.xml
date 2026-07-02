@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <path
+        android:fillColor="@color/avatar_arianne_bg"
+        android:pathData="M48,4 C23.7,4 4,23.7 4,48 C4,72.3 23.7,92 48,92 C72.3,92 92,72.3 92,48 C92,23.7 72.3,4 48,4 Z"
+        android:strokeColor="@color/avatar_photo_ring"
+        android:strokeWidth="6" />
+    <path
+        android:fillColor="@color/avatar_hair_brown"
+        android:pathData="M28,60 C25,42 33,24 48,24 C63,24 71,42 68,60 C63,57 61,50 60,43 C55,38 51,35 44,35 C37,36 33,43 33,52 C33,55 31,58 28,60 Z" />
+    <path
+        android:fillColor="@color/avatar_face"
+        android:pathData="M48,33 C39.7,33 33,39.7 33,48 C33,56.3 39.7,63 48,63 C56.3,63 63,56.3 63,48 C63,39.7 56.3,33 48,33 Z" />
+    <path
+        android:fillColor="@color/avatar_shirt_red"
+        android:pathData="M23,84 C27,70 36.5,63 48,63 C59.5,63 69,70 73,84 Z" />
+</vector>
